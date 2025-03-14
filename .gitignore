@@ -1,0 +1,8 @@
+.env
+.aixplain_cache/
+.venv/
+audios/
+logs/
+prompts/
+responses/
+features.md
