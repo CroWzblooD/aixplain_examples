@@ -1,4 +1,5 @@
 .env
+.DS_STORE
 .aixplain_cache/
 .venv/
 audios/

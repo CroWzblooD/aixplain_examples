@@ -7,8 +7,9 @@ logging.basicConfig(filename="./logs/gemini2.log", level=logging.INFO, format="%
 
 _ = os.getenv('TEAM_API_KEY')
 gemini2_id = os.getenv('GEMINI2_FLASH_ID')
-if not gemini2_id:
-    raise ValueError('[ERROR]: gemini2_id failed to get')
+stable_diff_id = os.getenv('STABLE_DIFFUSION_ID')
+if not gemini2_id or not stable_diff_id:
+    raise ValueError('[ERROR]: failed to get model id')
 
 from aixplain.factories import AgentFactory
 from aixplain.modules.agent import OutputFormat
@@ -22,6 +23,7 @@ agent = AgentFactory.create(
     description=agent_description,
     tools=[
         AgentFactory.create_model_tool(model=gemini2_id),
+        AgentFactory.create_model_tool(model=stable_diff_id),
     ],
 )
 
@@ -32,14 +34,9 @@ with open('./prompts/006_prompt.txt', 'r') as file:
 if prompt:
     response = agent.run(
         query=prompt,
-        output_format=OutputFormat.MARKDOWN,
+        output_format=OutputFormat.TEXT,
         parameters={'max_tokens': 8192}
     )
-    os.system('clear')
-
-    print(f'\033[34m{'-' * 100}\033[0m')
-    print(response['data']['output'])
-    print(f'\033[34m{'-' * 100}\033[0m')
-    print(f'run_time: {response['run_time']}')
+    print(response)
 else:
     print('Agent failed to respond')

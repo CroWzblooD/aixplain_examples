@@ -1,32 +1,32 @@
-import os, logging
-import aixplain as ap
+import os
 from dotenv import load_dotenv
-
-logging.getLogger().setLevel(logging.WARNING)
 load_dotenv('.env')
 
-api_key = os.getenv('TEAM_API_KEY')
-if not api_key:
-    raise ValueError("API key not found. Set it in the .api_keys file")
+_ = os.getenv('TEAM_API_KEY')
+gemini2_id = os.getenv('GEMINI2_FLASH_ID')
 
-aix = ap.Aixplain(api_key=api_key)
-model_id = os.getenv('GEMINI2_FLASH_ID')
+from aixplain.factories import ModelFactory
 
-def query_model(prompt):
-    try:
-        if not model_id:
-            return '[ERROR]: Failed to get model id'
-        else:
-            model = aix.Model.get(id=model_id)
-            response = model.run(prompt, max_tokens=5000)
-            return response.data
-    except Exception as e:
-        return f"[ERROR]: {e}"
+class ModelAccessException(Exception):
+    def __init__(self, message, model_id):
+        super().__init__(message)
+        self.model_id = model_id
 
+def query_model(prompt: str, model_id: str) -> str :
+    if model_id:
+        gemini2 = ModelFactory.get(model_id=model_id)
+        result = gemini2.run(data=prompt, parameters={"max_tokens": 4096})
+        return result.data
+    else:
+        raise ModelAccessException("Cannot access model", model_id)
 
-if __name__ == '__main__':
-    with open('prompts/001_prompt.txt', 'r', encoding='utf-8') as file:
+prompt: str | None = None
+try:
+    with open('./prompts/005_prompt.txt', 'r') as file:
         prompt = file.read()
-    model_out = query_model(prompt)
-    # print(f"\033[32m{model_out}\033[0m")
-    print(model_out)
+    if prompt and gemini2_id:
+        gemini2_output = query_model(prompt, gemini2_id)
+        print(gemini2_output)
+except ModelAccessException as e:
+    print(f'[ERROR]: {e}')
+    print(f'model_id: {e.model_id}')
