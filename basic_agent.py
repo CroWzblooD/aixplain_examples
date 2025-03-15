@@ -14,7 +14,6 @@ if not gemini2_id or not stable_diff_id:
 from aixplain.factories import AgentFactory
 from aixplain.modules.agent import OutputFormat
 
-agent_description: str | None
 with open('prompts/001_agent_desc.txt', 'r') as file:
     agent_description = file.read()
 
@@ -27,7 +26,6 @@ agent = AgentFactory.create(
     ],
 )
 
-prompt: str | None
 with open('./prompts/006_prompt.txt', 'r') as file:
     prompt = file.read()
 

@@ -12,7 +12,7 @@ class ModelAccessException(Exception):
         super().__init__(message)
         self.model_id = model_id
 
-def query_model(prompt: str, model_id: str) -> str :
+def query_model(prompt, model_id):
     if model_id:
         gemini2 = ModelFactory.get(model_id=model_id)
         result = gemini2.run(data=prompt, parameters={"max_tokens": 4096})
@@ -20,7 +20,6 @@ def query_model(prompt: str, model_id: str) -> str :
     else:
         raise ModelAccessException("Cannot access model", model_id)
 
-prompt: str | None = None
 try:
     with open('./prompts/005_prompt.txt', 'r') as file:
         prompt = file.read()

@@ -1,4 +1,4 @@
-import os
+import os, requests
 from dotenv import load_dotenv
 load_dotenv('.env')
 
@@ -13,6 +13,7 @@ if not translate_eng_hin_id or not speech_syn_hin_bmale or not gemini2_id:
 from aixplain.factories.pipeline_factory import PipelineFactory
 from aixplain.modules.pipeline.designer import Input
 from aixplain.enums.data_type import DataType
+
 pipeline = PipelineFactory.init('English question to Hindi audio')
 
 text_input_node = Input(data='text_input', data_types=[DataType.TEXT], pipeline=pipeline)
@@ -33,9 +34,16 @@ speech_syn_out = speech_syn_node.use_output('data')
 
 pipeline.save()
 
-prompt: str | None
 with open('./prompts/008_prompt.txt', 'r') as file:
     prompt = file.read()
 
-outputs = pipeline.run(data=prompt, max_tokens=10_000)
+outputs = pipeline.run(data=prompt)
 print(outputs)
+
+url = outputs['data'][2]['segments'][0]['response']
+response = requests.get(url)
+if response.status_code == 200:
+    with open('./audios/friction_hindi.mp3', 'wb') as file:
+        file.write(response.content)
+else:
+    print(f'[ERROR] Failed to download file. Status code: {response.status_code}')
