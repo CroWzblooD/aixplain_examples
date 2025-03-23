@@ -1,0 +1,32 @@
+2025-03-22 13:04:55,984 - root - WARNING - AIXPLAIN_TEAM_API_KEY not found in environment variables
+2025-03-22 13:04:55,985 - root - WARNING - GEMINI_API_KEY not found in environment variables
+2025-03-22 13:14:54,207 - root - WARNING - AIXPLAIN_TEAM_API_KEY not found in environment variables
+2025-03-22 13:14:54,207 - root - WARNING - GEMINI_API_KEY not found in environment variables
+2025-03-22 13:15:01,147 - root - WARNING - AIXPLAIN_TEAM_API_KEY not found in environment variables
+2025-03-22 13:15:01,148 - root - WARNING - GEMINI_API_KEY not found in environment variables
+2025-03-22 13:15:14,995 - root - WARNING - AIXPLAIN_TEAM_API_KEY not found in environment variables
+2025-03-22 13:15:14,996 - root - WARNING - GEMINI_API_KEY not found in environment variables
+2025-03-22 14:33:43,336 - root - WARNING - AIXPLAIN_API_KEY not found in environment variables
+2025-03-22 14:33:43,406 - root - WARNING - GEMINI_API_KEY not found in environment variables
+2025-03-22 15:15:02,582 - root - ERROR - Error generating quiz: No module named 'aixplain.modules.llm'
+2025-03-22 15:15:02,583 - root - INFO - Using fallback method to generate quiz questions
+2025-03-22 15:17:15,589 - root - ERROR - Error generating quiz: PipelineFactory.get() got an unexpected keyword argument 'team_api_key'
+2025-03-22 15:17:15,589 - root - INFO - Using fallback method to generate quiz questions
+2025-03-22 15:22:37,965 - root - INFO - Start service for GET Pipeline  - https://platform-api.aixplain.com/sdk/pipelines/6759db476eb56303857a07c1 - {'Authorization': 'Token 7fc748c9f7eb0f1a2ad2e356ab54c5176c0d2965ea1f6bd49599c10444f90785', 'Content-Type': 'application/json'}
+2025-03-22 15:22:39,026 - root - ERROR - Pipeline GET Error: Failed to retrieve pipeline 6759db476eb56303857a07c1. Status Code: 404. Error: {'message': 'Not Found', 'statusCode': 404}
+2025-03-22 15:22:39,027 - root - ERROR - Error generating quiz: Pipeline GET Error: Failed to retrieve pipeline 6759db476eb56303857a07c1. Status Code: 404. Error: {'message': 'Not Found', 'statusCode': 404}
+2025-03-22 15:22:39,027 - root - INFO - Using fallback method to generate quiz questions
+2025-03-22 15:25:50,253 - root - ERROR - Error generating quiz: No module named 'aixplain.modules.llm'
+2025-03-22 15:25:50,254 - root - INFO - Using fallback method to generate quiz questions
+2025-03-22 15:32:05,843 - root - INFO - Start service for GET Pipeline  - https://platform-api.aixplain.com/sdk/pipelines/gemini-pro - {'Authorization': 'Token 7fc748c9f7eb0f1a2ad2e356ab54c5176c0d2965ea1f6bd49599c10444f90785', 'Content-Type': 'application/json'}
+2025-03-22 15:32:06,820 - root - ERROR - Pipeline GET Error: Failed to retrieve pipeline gemini-pro. Status Code: 400. Error: {'message': 'err.invalid_param', 'error': 'Bad Request', 'statusCode': 400}
+2025-03-22 15:32:06,822 - root - ERROR - Error generating quiz: Pipeline GET Error: Failed to retrieve pipeline gemini-pro. Status Code: 400. Error: {'message': 'err.invalid_param', 'error': 'Bad Request', 'statusCode': 400}
+2025-03-22 15:32:06,824 - root - INFO - Using fallback method to generate quiz questions
+2025-03-22 15:32:55,808 - root - INFO - Start service for GET Pipeline  - https://platform-api.aixplain.com/sdk/pipelines/gemini-pro - {'Authorization': 'Token 7fc748c9f7eb0f1a2ad2e356ab54c5176c0d2965ea1f6bd49599c10444f90785', 'Content-Type': 'application/json'}
+2025-03-22 15:32:56,765 - root - ERROR - Pipeline GET Error: Failed to retrieve pipeline gemini-pro. Status Code: 400. Error: {'message': 'err.invalid_param', 'error': 'Bad Request', 'statusCode': 400}
+2025-03-22 15:32:56,766 - root - ERROR - Error generating quiz: Pipeline GET Error: Failed to retrieve pipeline gemini-pro. Status Code: 400. Error: {'message': 'err.invalid_param', 'error': 'Bad Request', 'statusCode': 400}
+2025-03-22 15:32:56,770 - root - INFO - Using fallback method to generate quiz questions
+2025-03-22 18:31:40,268 - root - INFO - Received raw input: {"prompt":"generate quiz related to operating system","category":"Digital Skills","language":"English","questionCount":5,"questionType":"multiple-choice"}
+2025-03-22 18:31:40,269 - root - INFO - Parsed request data: {'prompt': 'generate quiz related to operating system', 'category': 'Digital Skills', 'language': 'English', 'questionCount': 5, 'questionType': 'multiple-choice'}
+2025-03-22 18:31:40,270 - root - INFO - Extracted parameters: prompt='generate quiz related to operating system', category='Digital Skills', language='English', question_count=5, question_type='multiple-choice'
+2025-03-22 18:31:40,270 - root - ERROR - Error generating quiz: AgentFactory.create() got an unexpected keyword argument 'model_id'
